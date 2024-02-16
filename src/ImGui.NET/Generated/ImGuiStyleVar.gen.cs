@@ -32,6 +32,7 @@ namespace ImGuiNET
         SeparatorTextAlign = 27,
         SeparatorTextPadding = 28,
         DockingSeparatorSize = 29,
-        COUNT = 30,
+        LayoutAlign = 30,
+        COUNT = 31,
     }
 }

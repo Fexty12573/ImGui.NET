@@ -861,6 +861,207 @@ namespace ImGuiNET
         {
             ImGuiNative.igBeginGroup();
         }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static void BeginHorizontal(ReadOnlySpan<char> str_id)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            Vector2 size = new Vector2();
+            float align = -1.0f;
+            ImGuiNative.igBeginHorizontal_Str(native_str_id, size, align);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+#endif
+        public static void BeginHorizontal(string str_id)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            Vector2 size = new Vector2();
+            float align = -1.0f;
+            ImGuiNative.igBeginHorizontal_Str(native_str_id, size, align);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static void BeginHorizontal(ReadOnlySpan<char> str_id, Vector2 size)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            float align = -1.0f;
+            ImGuiNative.igBeginHorizontal_Str(native_str_id, size, align);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+#endif
+        public static void BeginHorizontal(string str_id, Vector2 size)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            float align = -1.0f;
+            ImGuiNative.igBeginHorizontal_Str(native_str_id, size, align);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static void BeginHorizontal(ReadOnlySpan<char> str_id, Vector2 size, float align)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            ImGuiNative.igBeginHorizontal_Str(native_str_id, size, align);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+#endif
+        public static void BeginHorizontal(string str_id, Vector2 size, float align)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            ImGuiNative.igBeginHorizontal_Str(native_str_id, size, align);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+        public static void BeginHorizontal(IntPtr ptr_id)
+        {
+            void* native_ptr_id = (void*)ptr_id.ToPointer();
+            Vector2 size = new Vector2();
+            float align = -1.0f;
+            ImGuiNative.igBeginHorizontal_Ptr(native_ptr_id, size, align);
+        }
+        public static void BeginHorizontal(IntPtr ptr_id, Vector2 size)
+        {
+            void* native_ptr_id = (void*)ptr_id.ToPointer();
+            float align = -1.0f;
+            ImGuiNative.igBeginHorizontal_Ptr(native_ptr_id, size, align);
+        }
+        public static void BeginHorizontal(IntPtr ptr_id, Vector2 size, float align)
+        {
+            void* native_ptr_id = (void*)ptr_id.ToPointer();
+            ImGuiNative.igBeginHorizontal_Ptr(native_ptr_id, size, align);
+        }
+        public static void BeginHorizontal(int id)
+        {
+            Vector2 size = new Vector2();
+            float align = -1;
+            ImGuiNative.igBeginHorizontal_Int(id, size, align);
+        }
+        public static void BeginHorizontal(int id, Vector2 size)
+        {
+            float align = -1;
+            ImGuiNative.igBeginHorizontal_Int(id, size, align);
+        }
+        public static void BeginHorizontal(int id, Vector2 size, float align)
+        {
+            ImGuiNative.igBeginHorizontal_Int(id, size, align);
+        }
         public static bool BeginItemTooltip()
         {
             byte ret = ImGuiNative.igBeginItemTooltip();
@@ -2309,6 +2510,207 @@ namespace ImGuiNET
         {
             byte ret = ImGuiNative.igBeginTooltip();
             return ret != 0;
+        }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static void BeginVertical(ReadOnlySpan<char> str_id)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            Vector2 size = new Vector2();
+            float align = -1.0f;
+            ImGuiNative.igBeginVertical_Str(native_str_id, size, align);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+#endif
+        public static void BeginVertical(string str_id)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            Vector2 size = new Vector2();
+            float align = -1.0f;
+            ImGuiNative.igBeginVertical_Str(native_str_id, size, align);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static void BeginVertical(ReadOnlySpan<char> str_id, Vector2 size)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            float align = -1.0f;
+            ImGuiNative.igBeginVertical_Str(native_str_id, size, align);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+#endif
+        public static void BeginVertical(string str_id, Vector2 size)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            float align = -1.0f;
+            ImGuiNative.igBeginVertical_Str(native_str_id, size, align);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static void BeginVertical(ReadOnlySpan<char> str_id, Vector2 size, float align)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            ImGuiNative.igBeginVertical_Str(native_str_id, size, align);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+#endif
+        public static void BeginVertical(string str_id, Vector2 size, float align)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            ImGuiNative.igBeginVertical_Str(native_str_id, size, align);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+        public static void BeginVertical(IntPtr ptr_id)
+        {
+            void* native_ptr_id = (void*)ptr_id.ToPointer();
+            Vector2 size = new Vector2();
+            float align = -1.0f;
+            ImGuiNative.igBeginVertical_Ptr(native_ptr_id, size, align);
+        }
+        public static void BeginVertical(IntPtr ptr_id, Vector2 size)
+        {
+            void* native_ptr_id = (void*)ptr_id.ToPointer();
+            float align = -1.0f;
+            ImGuiNative.igBeginVertical_Ptr(native_ptr_id, size, align);
+        }
+        public static void BeginVertical(IntPtr ptr_id, Vector2 size, float align)
+        {
+            void* native_ptr_id = (void*)ptr_id.ToPointer();
+            ImGuiNative.igBeginVertical_Ptr(native_ptr_id, size, align);
+        }
+        public static void BeginVertical(int id)
+        {
+            Vector2 size = new Vector2();
+            float align = -1;
+            ImGuiNative.igBeginVertical_Int(id, size, align);
+        }
+        public static void BeginVertical(int id, Vector2 size)
+        {
+            float align = -1;
+            ImGuiNative.igBeginVertical_Int(id, size, align);
+        }
+        public static void BeginVertical(int id, Vector2 size, float align)
+        {
+            ImGuiNative.igBeginVertical_Int(id, size, align);
         }
         public static void Bullet()
         {
@@ -12393,6 +12795,10 @@ namespace ImGuiNET
         {
             ImGuiNative.igEndGroup();
         }
+        public static void EndHorizontal()
+        {
+            ImGuiNative.igEndHorizontal();
+        }
         public static void EndListBox()
         {
             ImGuiNative.igEndListBox();
@@ -12428,6 +12834,10 @@ namespace ImGuiNET
         public static void EndTooltip()
         {
             ImGuiNative.igEndTooltip();
+        }
+        public static void EndVertical()
+        {
+            ImGuiNative.igEndVertical();
         }
         public static ImGuiViewportPtr FindViewportByID(uint id)
         {
@@ -20342,6 +20752,10 @@ namespace ImGuiNET
         {
             ImGuiNative.igResetMouseDragDelta(button);
         }
+        public static void ResumeLayout()
+        {
+            ImGuiNative.igResumeLayout();
+        }
         public static void SameLine()
         {
             float offset_from_start_x = 0.0f;
@@ -25734,6 +26148,21 @@ namespace ImGuiNET
         {
             ImGuiNative.igSpacing();
         }
+        public static void Spring()
+        {
+            float weight = 1.0f;
+            float spacing = -1.0f;
+            ImGuiNative.igSpring(weight, spacing);
+        }
+        public static void Spring(float weight)
+        {
+            float spacing = -1.0f;
+            ImGuiNative.igSpring(weight, spacing);
+        }
+        public static void Spring(float weight, float spacing)
+        {
+            ImGuiNative.igSpring(weight, spacing);
+        }
         public static void StyleColorsClassic()
         {
             ImGuiStyle* dst = null;
@@ -25763,6 +26192,10 @@ namespace ImGuiNET
         {
             ImGuiStyle* native_dst = dst.NativePtr;
             ImGuiNative.igStyleColorsLight(native_dst);
+        }
+        public static void SuspendLayout()
+        {
+            ImGuiNative.igSuspendLayout();
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         public static bool TabItemButton(ReadOnlySpan<char> label)

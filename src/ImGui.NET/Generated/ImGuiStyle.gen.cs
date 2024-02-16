@@ -32,6 +32,7 @@ namespace ImGuiNET
         public float ScrollbarRounding;
         public float GrabMinSize;
         public float GrabRounding;
+        public float LayoutAlign;
         public float LogSliderDeadzone;
         public float TabRounding;
         public float TabBorderSize;
@@ -147,6 +148,7 @@ namespace ImGuiNET
         public ref float ScrollbarRounding => ref Unsafe.AsRef<float>(&NativePtr->ScrollbarRounding);
         public ref float GrabMinSize => ref Unsafe.AsRef<float>(&NativePtr->GrabMinSize);
         public ref float GrabRounding => ref Unsafe.AsRef<float>(&NativePtr->GrabRounding);
+        public ref float LayoutAlign => ref Unsafe.AsRef<float>(&NativePtr->LayoutAlign);
         public ref float LogSliderDeadzone => ref Unsafe.AsRef<float>(&NativePtr->LogSliderDeadzone);
         public ref float TabRounding => ref Unsafe.AsRef<float>(&NativePtr->TabRounding);
         public ref float TabBorderSize => ref Unsafe.AsRef<float>(&NativePtr->TabBorderSize);
