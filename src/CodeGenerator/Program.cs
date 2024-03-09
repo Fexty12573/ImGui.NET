@@ -40,6 +40,49 @@ namespace CodeGenerator
                 libraryName = "cimgui";
             }
 
+            string dllName;
+            if (args.Length > 2)
+            {
+                dllName = args[2];
+            }
+            else
+            {
+                dllName = libraryName switch
+                {
+                    "cimgui" => "cimgui",
+                    "cimplot" => "cimplot",
+                    "cimnodes" => "cimnodes",
+                    "cimguizmo" => "cimguizmo",
+                    _ => throw new NotImplementedException()
+                };
+            }
+
+            string imWcharType;
+            if (args.Length > 3)
+            {
+                //---- Use 32-bit for ImWchar (default is 16-bit) to support unicode planes 1-16. (e.g. point beyond 0xFFFF like emoticons, dingbats, symbols, shapes, ancient languages, etc...)
+                // #define IMGUI_USE_WCHAR32 in imconfig.h
+                // set this argument to int/uint
+                imWcharType = args[3]; 
+            }
+            else
+            {
+                imWcharType = "ushort";
+            }
+            TypeInfo.WellKnownTypes["ImWchar"] = imWcharType;
+
+            string definitionsPath;
+            if (args.Length > 4)
+            {
+                definitionsPath = args[4]; 
+            }
+            else
+            {
+                definitionsPath = Path.Combine(AppContext.BaseDirectory, "definitions", libraryName);;
+            }
+
+            bool withInternals = args.Length > 5 && args[5] == "internal";
+
             string projectNamespace = libraryName switch
             {
                 "cimgui" => "ImGuiNET",
@@ -67,18 +110,8 @@ namespace CodeGenerator
                 _ => throw new NotImplementedException($"Library \"{libraryName}\" is not supported.")
             };
 
-            string dllName = libraryName switch
-            {
-                "cimgui" => "cimgui",
-                "cimplot" => "cimplot",
-                "cimnodes" => "cimnodes",
-                "cimguizmo" => "cimguizmo",
-                _ => throw new NotImplementedException()
-            };
-            
-            string definitionsPath = Path.Combine(AppContext.BaseDirectory, "definitions", libraryName);
             var defs = new ImguiDefinitions();
-            defs.LoadFrom(definitionsPath);
+            defs.LoadFrom(definitionsPath, withInternals);
 
             Console.WriteLine($"Outputting generated code files to {outputPath}.");
 
@@ -154,6 +187,15 @@ namespace CodeGenerator
                     writer.WriteLine($"public static implicit operator {ptrTypeName}({td.Name}* nativePtr) => new {ptrTypeName}(nativePtr);");
                     writer.WriteLine($"public static implicit operator {td.Name}* ({ptrTypeName} wrappedPtr) => wrappedPtr.NativePtr;");
                     writer.WriteLine($"public static implicit operator {ptrTypeName}(IntPtr nativePtr) => new {ptrTypeName}(nativePtr);");
+                    // TODO: this makes the generated code hard to compare, so after merging uncomment this.
+                    // writer.WriteLine($"public static implicit operator IntPtr({ptrTypeName} self) => (IntPtr)self.NativePtr;");
+
+                    if (TypeInfo.SkipPointerImpl.Contains(ptrTypeName))
+                    {
+                        writer.PopBlock();
+                        writer.PopBlock();
+                        continue;
+                    }
 
                     foreach (TypeReference field in td.Fields)
                     {
@@ -168,6 +210,14 @@ namespace CodeGenerator
                         if (field.ArraySize != 0)
                         {
                             string addrTarget = TypeInfo.LegalFixedTypes.Contains(rawType) ? $"NativePtr->{field.Name}" : $"&NativePtr->{field.Name}_0";
+                            if (typeStr.EndsWith("*"))
+                            {
+                                typeStr = typeStr.Substring(0, typeStr.Length - 1) + "Ptr";
+                            }
+                            if (typeStr == "bytePtr")
+                            {
+                                typeStr = "IntPtr";
+                            }
                             writer.WriteLine($"public RangeAccessor<{typeStr}> {field.Name} => new RangeAccessor<{typeStr}>({addrTarget}, {field.ArraySize});");
                         }
                         else if (typeStr.Contains("ImVector"))
@@ -287,6 +337,8 @@ namespace CodeGenerator
                 writer.WriteLine(string.Empty);
                 writer.PushBlock($"namespace {projectNamespace}");
                 writer.PushBlock($"public static unsafe partial class {classPrefix}Native");
+                writer.WriteLine($"public const string LibName=\"{dllName}\";");
+
                 foreach (FunctionDefinition fd in defs.Functions)
                 {
                     foreach (OverloadDefinition overload in fd.Overloads)
@@ -509,7 +561,7 @@ namespace CodeGenerator
                     preCallLines.Add($"{overrideRet} __retval;");
                     continue;
                 }
-                if (tr.Type == "char*")
+                if (tr.Type == "char*" || (tr.Type.StartsWith("char[") && tr.Type.EndsWith("]")))
                 {
                     string textToEncode = correctedIdentifier;
                     bool hasDefault = false;
@@ -634,7 +686,8 @@ namespace CodeGenerator
                 }
                 else if (tr.Type == "void*" || tr.Type == "ImWchar*")
                 {
-                    string nativePtrTypeName = tr.Type == "void*" ? "void*" : "ushort*";
+                    string wcharT = TypeInfo.WellKnownTypes["ImWchar"]; // handle custom wchar type
+                    string nativePtrTypeName = tr.Type == "void*" ? "void*" : $"{wcharT}*";
                     string nativeArgName = "native_" + tr.Name;
                     marshalledParameters[i] = new MarshalledParameter("IntPtr", false, nativeArgName, false);
                     preCallLines.Add($"{nativePtrTypeName} {nativeArgName} = ({nativePtrTypeName}){correctedIdentifier}.ToPointer();");
@@ -836,7 +889,7 @@ namespace CodeGenerator
                 int pointerLevel = nativeType.Length - nativeType.IndexOf('*');
                 if (pointerLevel > 1)
                 {
-                    wrappedType = null;
+                    wrappedType = "IntPtr";
                     return false; // TODO
                 }
                 string nonPtrType = nativeType.Substring(0, nativeType.Length - pointerLevel);

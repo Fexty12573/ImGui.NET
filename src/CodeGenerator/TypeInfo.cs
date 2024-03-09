@@ -16,6 +16,13 @@ namespace CodeGenerator
             { "ImS8", "sbyte" },
             { "ImU16", "ushort" },
             { "ImS16", "short" },
+            { "ImGuiKeyRoutingIndex", "short" },
+            { "ImGuiTableColumnIdx", "short" },
+            { "ImGuiTableDrawChannelIdx", "ushort" },
+            { "ImBitArray", "uint" },
+            { "ImPoolIdx", "nint" },
+            { "ImBitArrayPtr", "UIntPtr" },
+            { "ImGuiItemFlags", "nint" },
             { "ImU32", "uint" },
             { "ImS32", "int" },
             { "ImU64", "ulong" },
@@ -56,6 +63,7 @@ namespace CodeGenerator
             { "ImPlotGetter", "IntPtr" },
             { "ImPlotTransform", "IntPtr" },
             { "ImGuiKeyChord", "ImGuiKey" },
+            { "ImGuiSelectionUserData", "long"},
         };
         
         public static readonly List<string> WellKnownEnums = new List<string>()
@@ -84,6 +92,11 @@ namespace CodeGenerator
             "ImVec2",
             "ImVec4",
             "ImGuiStoragePair",
+        };
+
+        public static readonly HashSet<string> SkipPointerImpl = new HashSet<string>()
+        {
+            "ImGuiDockContextPtr",
         };
 
         public static readonly Dictionary<string, string> WellKnownDefaultValues = new Dictionary<string, string>()
@@ -158,7 +171,9 @@ namespace CodeGenerator
         {
             "igInputText",
             "igInputTextMultiline",
-            "igInputTextWithHint"
+            "igInputTextWithHint",
+            "igCalcTextSize",
+            "igItemAdd"
         };
     }
 }

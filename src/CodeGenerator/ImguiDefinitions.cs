@@ -22,7 +22,7 @@ namespace CodeGenerator
             if (v == null) return 0;
             return v.ToObject<int>();
         }
-        public void LoadFrom(string directory)
+        public void LoadFrom(string directory, bool includeInternal)
         {
             
             JObject typesJson;
@@ -48,6 +48,9 @@ namespace CodeGenerator
                     variantsJson = JObject.Load(jr);
                 }
             }
+            else {
+                variantsJson = new JObject();
+            }
 
             Variants = new Dictionary<string, MethodVariant>();
             foreach (var jt in variantsJson.Children())
@@ -67,7 +70,8 @@ namespace CodeGenerator
                 JProperty jp = (JProperty)jt;
                 string name = jp.Name;
                 if (typeLocations?[jp.Name]?.Value<string>().Contains("internal") ?? false) {
-                    return null;
+                    if (!includeInternal)
+                        return null;
                 }
                 EnumMember[] elements = jp.Values().Select(v =>
                 {
@@ -81,11 +85,13 @@ namespace CodeGenerator
                 JProperty jp = (JProperty)jt;
                 string name = jp.Name;
                 if (typeLocations?[jp.Name]?.Value<string>().Contains("internal") ?? false) {
-                    return null;
+                    if (!includeInternal)
+                        return null;
                 }
                 TypeReference[] fields = jp.Values().Select(v =>
                 {
                     if (v["type"].ToString().Contains("static")) { return null; }
+                    if (v["type"].ToString().Contains("union {")) { return null; }
 
                     
                     return new TypeReference(
@@ -121,7 +127,9 @@ namespace CodeGenerator
                         }
                     }
                     if (friendlyName == null) { return null; }
-                    if (val["location"]?.ToString().Contains("internal") ?? false) return null;
+                    if (val["location"]?.ToString().Contains("internal") ?? false) 
+                        if (!includeInternal)
+                            return null;
 
                     string exportedName = ov_cimguiname;
                     if (exportedName == null)
@@ -151,6 +159,13 @@ namespace CodeGenerator
                     {
                         string pType = p["type"].ToString();
                         string pName = p["name"].ToString();
+
+                        // TODO: this should be fine as the array size is only a compiler hint?
+                        if (pType.EndsWith("]"))
+                            pType = (pType.Substring(0, pType.IndexOf("["))) + "*";
+
+                        if (pName == "base")
+                            pName = "Base";
 
                         // if there are possible variants for this method then try to match them based on the parameter name and expected type
                         ParameterVariant matchingVariant = methodVariants?.Parameters.Where(pv => pv.Name == pName && pv.OriginalType == pType).FirstOrDefault() ?? null;
@@ -368,6 +383,15 @@ namespace CodeGenerator
             Name = name;
             Type = type.Replace("const", string.Empty).Trim();
 
+            // TODO: if needed, we could maybe build some generic structs?
+            if (Type.StartsWith("ImSpan_"))
+            {
+                Type = "ImSpanUnknown";
+            }
+            if (Type.StartsWith("ImPool_"))
+            {
+                Type = "ImPoolUnknown";
+            }
 
             if (Type.StartsWith("ImVector_"))
             {

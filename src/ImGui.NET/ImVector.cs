@@ -79,4 +79,9 @@ namespace ImGuiNET
             }
         }
     }
+    
+    
+    public unsafe struct ImVectorPtr {
+        public ImVector* NativePtr;
+    }
 }
