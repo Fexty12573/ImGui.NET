@@ -111,7 +111,7 @@ namespace CodeGenerator
             };
 
             var defs = new ImguiDefinitions();
-            defs.LoadFrom(definitionsPath, withInternals);
+            defs.LoadFrom(definitionsPath, /*TODO: withInternals*/ true);
 
             Console.WriteLine($"Outputting generated code files to {outputPath}.");
 

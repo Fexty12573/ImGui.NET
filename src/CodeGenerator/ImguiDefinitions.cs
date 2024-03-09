@@ -160,6 +160,10 @@ namespace CodeGenerator
                         string pType = p["type"].ToString();
                         string pName = p["name"].ToString();
 
+                        if (pType.EndsWith(']') && !TypeInfo.WellKnownTypes.ContainsKey(pType)
+                            && pType != "const char* const[]")
+                            pType = pType[..pType.IndexOf('[')] + "*";
+
                         if (pName == "base")
                             pName = "Base";
 
@@ -174,7 +178,10 @@ namespace CodeGenerator
                     foreach (JToken dv in val["defaults"])
                     {
                         JProperty dvProp = (JProperty)dv;
-                        defaultValues.Add(dvProp.Name, dvProp.Value.ToString());
+                        defaultValues.Add(dvProp.Name, 
+                            dvProp.Value.ToString() == "ImGuiTypingSelectFlags_None" 
+                                ? "0" 
+                                : dvProp.Value.ToString());
                     }
                     string returnType = val["ret"]?.ToString() ?? "void";
                     string comment = null;

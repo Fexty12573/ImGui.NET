@@ -896,7 +896,7 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern int igImTextCharFromUtf8(uint* out_char, byte* in_text, byte* in_text_end);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* igImTextCharToUtf8(char[5] out_buf, uint c);
+        public static extern byte* igImTextCharToUtf8(byte* out_buf, uint c);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern int igImTextCountCharsFromUtf8(byte* in_text, byte* in_text_end);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]

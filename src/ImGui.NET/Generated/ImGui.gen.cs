@@ -16435,7 +16435,7 @@ namespace ImGuiNET
         }
         public static ImGuiTypingSelectRequestPtr GetTypingSelectRequest()
         {
-            ImGuiTypingSelectFlags flags = (ImGuiTypingSelectFlags)ImGuiTypingSelectFlags_None;
+            ImGuiTypingSelectFlags flags = (ImGuiTypingSelectFlags)0;
             ImGuiTypingSelectRequest* ret = ImGuiNative.igGetTypingSelectRequest(flags);
             return new ImGuiTypingSelectRequestPtr(ret);
         }

@@ -355,7 +355,7 @@ namespace ImGuiNET
             return result != 0;
         }
 
-        public static Vector2 CalcTextSize(string text, int start)
+        public static Vector2 CalcTextSize(string text, int start = 0)
             => CalcTextSizeImpl(text, start);
 
         public static Vector2 CalcTextSize(string text, float wrapWidth)
