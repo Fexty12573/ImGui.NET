@@ -33,6 +33,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiViewportPtr(ImGuiViewport* nativePtr) => new ImGuiViewportPtr(nativePtr);
         public static implicit operator ImGuiViewport* (ImGuiViewportPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImGuiViewportPtr(IntPtr nativePtr) => new ImGuiViewportPtr(nativePtr);
+        public static implicit operator IntPtr(ImGuiViewportPtr self) => (IntPtr)self.NativePtr;
         public ref uint ID => ref Unsafe.AsRef<uint>(&NativePtr->ID);
         public ref ImGuiViewportFlags Flags => ref Unsafe.AsRef<ImGuiViewportFlags>(&NativePtr->Flags);
         public ref Vector2 Pos => ref Unsafe.AsRef<Vector2>(&NativePtr->Pos);

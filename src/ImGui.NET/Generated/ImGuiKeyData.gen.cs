@@ -20,6 +20,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiKeyDataPtr(ImGuiKeyData* nativePtr) => new ImGuiKeyDataPtr(nativePtr);
         public static implicit operator ImGuiKeyData* (ImGuiKeyDataPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImGuiKeyDataPtr(IntPtr nativePtr) => new ImGuiKeyDataPtr(nativePtr);
+        public static implicit operator IntPtr(ImGuiKeyDataPtr self) => (IntPtr)self.NativePtr;
         public ref bool Down => ref Unsafe.AsRef<bool>(&NativePtr->Down);
         public ref float DownDuration => ref Unsafe.AsRef<float>(&NativePtr->DownDuration);
         public ref float DownDurationPrev => ref Unsafe.AsRef<float>(&NativePtr->DownDurationPrev);

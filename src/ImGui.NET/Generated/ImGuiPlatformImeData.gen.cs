@@ -19,6 +19,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiPlatformImeDataPtr(ImGuiPlatformImeData* nativePtr) => new ImGuiPlatformImeDataPtr(nativePtr);
         public static implicit operator ImGuiPlatformImeData* (ImGuiPlatformImeDataPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImGuiPlatformImeDataPtr(IntPtr nativePtr) => new ImGuiPlatformImeDataPtr(nativePtr);
+        public static implicit operator IntPtr(ImGuiPlatformImeDataPtr self) => (IntPtr)self.NativePtr;
         public ref bool WantVisible => ref Unsafe.AsRef<bool>(&NativePtr->WantVisible);
         public ref Vector2 InputPos => ref Unsafe.AsRef<Vector2>(&NativePtr->InputPos);
         public ref float InputLineHeight => ref Unsafe.AsRef<float>(&NativePtr->InputLineHeight);

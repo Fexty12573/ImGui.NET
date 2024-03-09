@@ -28,6 +28,7 @@ namespace ImGuiNET
         public static implicit operator ImFontGlyphPtr(ImFontGlyph* nativePtr) => new ImFontGlyphPtr(nativePtr);
         public static implicit operator ImFontGlyph* (ImFontGlyphPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImFontGlyphPtr(IntPtr nativePtr) => new ImFontGlyphPtr(nativePtr);
+        public static implicit operator IntPtr(ImFontGlyphPtr self) => (IntPtr)self.NativePtr;
         public ref uint Colored => ref Unsafe.AsRef<uint>(&NativePtr->Colored);
         public ref uint Visible => ref Unsafe.AsRef<uint>(&NativePtr->Visible);
         public ref uint Codepoint => ref Unsafe.AsRef<uint>(&NativePtr->Codepoint);

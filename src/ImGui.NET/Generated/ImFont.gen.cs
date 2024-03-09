@@ -36,6 +36,7 @@ namespace ImGuiNET
         public static implicit operator ImFontPtr(ImFont* nativePtr) => new ImFontPtr(nativePtr);
         public static implicit operator ImFont* (ImFontPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImFontPtr(IntPtr nativePtr) => new ImFontPtr(nativePtr);
+        public static implicit operator IntPtr(ImFontPtr self) => (IntPtr)self.NativePtr;
         public ImVector<float> IndexAdvanceX => new ImVector<float>(NativePtr->IndexAdvanceX);
         public ref float FallbackAdvanceX => ref Unsafe.AsRef<float>(&NativePtr->FallbackAdvanceX);
         public ref float FontSize => ref Unsafe.AsRef<float>(&NativePtr->FontSize);

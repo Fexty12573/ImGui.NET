@@ -160,10 +160,6 @@ namespace CodeGenerator
                         string pType = p["type"].ToString();
                         string pName = p["name"].ToString();
 
-                        // TODO: this should be fine as the array size is only a compiler hint?
-                        if (pType.EndsWith("]"))
-                            pType = (pType.Substring(0, pType.IndexOf("["))) + "*";
-
                         if (pName == "base")
                             pName = "Base";
 

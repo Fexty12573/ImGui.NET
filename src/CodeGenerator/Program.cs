@@ -188,7 +188,7 @@ namespace CodeGenerator
                     writer.WriteLine($"public static implicit operator {td.Name}* ({ptrTypeName} wrappedPtr) => wrappedPtr.NativePtr;");
                     writer.WriteLine($"public static implicit operator {ptrTypeName}(IntPtr nativePtr) => new {ptrTypeName}(nativePtr);");
                     // TODO: this makes the generated code hard to compare, so after merging uncomment this.
-                    // writer.WriteLine($"public static implicit operator IntPtr({ptrTypeName} self) => (IntPtr)self.NativePtr;");
+                    writer.WriteLine($"public static implicit operator IntPtr({ptrTypeName} self) => (IntPtr)self.NativePtr;");
 
                     if (TypeInfo.SkipPointerImpl.Contains(ptrTypeName))
                     {

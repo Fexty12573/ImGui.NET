@@ -30,6 +30,7 @@ namespace ImGuiNET
         public static implicit operator STB_TexteditStatePtr(STB_TexteditState* nativePtr) => new STB_TexteditStatePtr(nativePtr);
         public static implicit operator STB_TexteditState* (STB_TexteditStatePtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator STB_TexteditStatePtr(IntPtr nativePtr) => new STB_TexteditStatePtr(nativePtr);
+        public static implicit operator IntPtr(STB_TexteditStatePtr self) => (IntPtr)self.NativePtr;
         public ref int cursor => ref Unsafe.AsRef<int>(&NativePtr->cursor);
         public ref int select_start => ref Unsafe.AsRef<int>(&NativePtr->select_start);
         public ref int select_end => ref Unsafe.AsRef<int>(&NativePtr->select_end);

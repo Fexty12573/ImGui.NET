@@ -22,6 +22,7 @@ namespace ImGuiNET
         public static implicit operator StbTexteditRowPtr(StbTexteditRow* nativePtr) => new StbTexteditRowPtr(nativePtr);
         public static implicit operator StbTexteditRow* (StbTexteditRowPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator StbTexteditRowPtr(IntPtr nativePtr) => new StbTexteditRowPtr(nativePtr);
+        public static implicit operator IntPtr(StbTexteditRowPtr self) => (IntPtr)self.NativePtr;
         public ref float x0 => ref Unsafe.AsRef<float>(&NativePtr->x0);
         public ref float x1 => ref Unsafe.AsRef<float>(&NativePtr->x1);
         public ref float baseline_y_delta => ref Unsafe.AsRef<float>(&NativePtr->baseline_y_delta);

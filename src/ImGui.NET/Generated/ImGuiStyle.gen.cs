@@ -123,6 +123,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiStylePtr(ImGuiStyle* nativePtr) => new ImGuiStylePtr(nativePtr);
         public static implicit operator ImGuiStyle* (ImGuiStylePtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImGuiStylePtr(IntPtr nativePtr) => new ImGuiStylePtr(nativePtr);
+        public static implicit operator IntPtr(ImGuiStylePtr self) => (IntPtr)self.NativePtr;
         public ref float Alpha => ref Unsafe.AsRef<float>(&NativePtr->Alpha);
         public ref float DisabledAlpha => ref Unsafe.AsRef<float>(&NativePtr->DisabledAlpha);
         public ref Vector2 WindowPadding => ref Unsafe.AsRef<Vector2>(&NativePtr->WindowPadding);

@@ -25,6 +25,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiWindowClassPtr(ImGuiWindowClass* nativePtr) => new ImGuiWindowClassPtr(nativePtr);
         public static implicit operator ImGuiWindowClass* (ImGuiWindowClassPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImGuiWindowClassPtr(IntPtr nativePtr) => new ImGuiWindowClassPtr(nativePtr);
+        public static implicit operator IntPtr(ImGuiWindowClassPtr self) => (IntPtr)self.NativePtr;
         public ref uint ClassId => ref Unsafe.AsRef<uint>(&NativePtr->ClassId);
         public ref uint ParentViewportId => ref Unsafe.AsRef<uint>(&NativePtr->ParentViewportId);
         public ref uint FocusRouteParentWindowId => ref Unsafe.AsRef<uint>(&NativePtr->FocusRouteParentWindowId);

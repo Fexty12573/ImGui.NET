@@ -18,6 +18,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiTextRangePtr(ImGuiTextRange* nativePtr) => new ImGuiTextRangePtr(nativePtr);
         public static implicit operator ImGuiTextRange* (ImGuiTextRangePtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImGuiTextRangePtr(IntPtr nativePtr) => new ImGuiTextRangePtr(nativePtr);
+        public static implicit operator IntPtr(ImGuiTextRangePtr self) => (IntPtr)self.NativePtr;
         public IntPtr b { get => (IntPtr)NativePtr->b; set => NativePtr->b = (byte*)value; }
         public IntPtr e { get => (IntPtr)NativePtr->e; set => NativePtr->e = (byte*)value; }
         public void Destroy()

@@ -36,6 +36,7 @@ namespace ImGuiNET
         public static implicit operator ImFontConfigPtr(ImFontConfig* nativePtr) => new ImFontConfigPtr(nativePtr);
         public static implicit operator ImFontConfig* (ImFontConfigPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImFontConfigPtr(IntPtr nativePtr) => new ImFontConfigPtr(nativePtr);
+        public static implicit operator IntPtr(ImFontConfigPtr self) => (IntPtr)self.NativePtr;
         public IntPtr FontData { get => (IntPtr)NativePtr->FontData; set => NativePtr->FontData = (void*)value; }
         public ref int FontDataSize => ref Unsafe.AsRef<int>(&NativePtr->FontDataSize);
         public ref bool FontDataOwnedByAtlas => ref Unsafe.AsRef<bool>(&NativePtr->FontDataOwnedByAtlas);

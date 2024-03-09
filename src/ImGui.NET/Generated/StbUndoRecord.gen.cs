@@ -20,6 +20,7 @@ namespace ImGuiNET
         public static implicit operator StbUndoRecordPtr(StbUndoRecord* nativePtr) => new StbUndoRecordPtr(nativePtr);
         public static implicit operator StbUndoRecord* (StbUndoRecordPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator StbUndoRecordPtr(IntPtr nativePtr) => new StbUndoRecordPtr(nativePtr);
+        public static implicit operator IntPtr(StbUndoRecordPtr self) => (IntPtr)self.NativePtr;
         public ref int where => ref Unsafe.AsRef<int>(&NativePtr->where);
         public ref int insert_length => ref Unsafe.AsRef<int>(&NativePtr->insert_length);
         public ref int delete_length => ref Unsafe.AsRef<int>(&NativePtr->delete_length);

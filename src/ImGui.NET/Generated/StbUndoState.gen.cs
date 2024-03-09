@@ -120,6 +120,7 @@ namespace ImGuiNET
         public static implicit operator StbUndoStatePtr(StbUndoState* nativePtr) => new StbUndoStatePtr(nativePtr);
         public static implicit operator StbUndoState* (StbUndoStatePtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator StbUndoStatePtr(IntPtr nativePtr) => new StbUndoStatePtr(nativePtr);
+        public static implicit operator IntPtr(StbUndoStatePtr self) => (IntPtr)self.NativePtr;
         public RangeAccessor<StbUndoRecord> undo_rec => new RangeAccessor<StbUndoRecord>(&NativePtr->undo_rec_0, 99);
         public RangeAccessor<ushort> undo_char => new RangeAccessor<ushort>(NativePtr->undo_char, 999);
         public ref short undo_point => ref Unsafe.AsRef<short>(&NativePtr->undo_point);

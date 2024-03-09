@@ -24,6 +24,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiPayloadPtr(ImGuiPayload* nativePtr) => new ImGuiPayloadPtr(nativePtr);
         public static implicit operator ImGuiPayload* (ImGuiPayloadPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImGuiPayloadPtr(IntPtr nativePtr) => new ImGuiPayloadPtr(nativePtr);
+        public static implicit operator IntPtr(ImGuiPayloadPtr self) => (IntPtr)self.NativePtr;
         public IntPtr Data { get => (IntPtr)NativePtr->Data; set => NativePtr->Data = (void*)value; }
         public ref int DataSize => ref Unsafe.AsRef<int>(&NativePtr->DataSize);
         public ref uint SourceId => ref Unsafe.AsRef<uint>(&NativePtr->SourceId);

@@ -22,6 +22,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiPlatformMonitorPtr(ImGuiPlatformMonitor* nativePtr) => new ImGuiPlatformMonitorPtr(nativePtr);
         public static implicit operator ImGuiPlatformMonitor* (ImGuiPlatformMonitorPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImGuiPlatformMonitorPtr(IntPtr nativePtr) => new ImGuiPlatformMonitorPtr(nativePtr);
+        public static implicit operator IntPtr(ImGuiPlatformMonitorPtr self) => (IntPtr)self.NativePtr;
         public ref Vector2 MainPos => ref Unsafe.AsRef<Vector2>(&NativePtr->MainPos);
         public ref Vector2 MainSize => ref Unsafe.AsRef<Vector2>(&NativePtr->MainSize);
         public ref Vector2 WorkPos => ref Unsafe.AsRef<Vector2>(&NativePtr->WorkPos);

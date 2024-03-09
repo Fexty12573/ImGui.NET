@@ -24,6 +24,7 @@ namespace ImGuiNET
         public static implicit operator ImFontAtlasCustomRectPtr(ImFontAtlasCustomRect* nativePtr) => new ImFontAtlasCustomRectPtr(nativePtr);
         public static implicit operator ImFontAtlasCustomRect* (ImFontAtlasCustomRectPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImFontAtlasCustomRectPtr(IntPtr nativePtr) => new ImFontAtlasCustomRectPtr(nativePtr);
+        public static implicit operator IntPtr(ImFontAtlasCustomRectPtr self) => (IntPtr)self.NativePtr;
         public ref ushort Width => ref Unsafe.AsRef<ushort>(&NativePtr->Width);
         public ref ushort Height => ref Unsafe.AsRef<ushort>(&NativePtr->Height);
         public ref ushort X => ref Unsafe.AsRef<ushort>(&NativePtr->X);

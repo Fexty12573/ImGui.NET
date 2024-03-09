@@ -19,6 +19,7 @@ namespace ImGuiNET
         public static implicit operator ImDrawListSplitterPtr(ImDrawListSplitter* nativePtr) => new ImDrawListSplitterPtr(nativePtr);
         public static implicit operator ImDrawListSplitter* (ImDrawListSplitterPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImDrawListSplitterPtr(IntPtr nativePtr) => new ImDrawListSplitterPtr(nativePtr);
+        public static implicit operator IntPtr(ImDrawListSplitterPtr self) => (IntPtr)self.NativePtr;
         public ref int _Current => ref Unsafe.AsRef<int>(&NativePtr->_Current);
         public ref int _Count => ref Unsafe.AsRef<int>(&NativePtr->_Count);
         public ImPtrVector<ImDrawChannelPtr> _Channels => new ImPtrVector<ImDrawChannelPtr>(NativePtr->_Channels, Unsafe.SizeOf<ImDrawChannel>());

@@ -20,6 +20,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiTableColumnSortSpecsPtr(ImGuiTableColumnSortSpecs* nativePtr) => new ImGuiTableColumnSortSpecsPtr(nativePtr);
         public static implicit operator ImGuiTableColumnSortSpecs* (ImGuiTableColumnSortSpecsPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImGuiTableColumnSortSpecsPtr(IntPtr nativePtr) => new ImGuiTableColumnSortSpecsPtr(nativePtr);
+        public static implicit operator IntPtr(ImGuiTableColumnSortSpecsPtr self) => (IntPtr)self.NativePtr;
         public ref uint ColumnUserID => ref Unsafe.AsRef<uint>(&NativePtr->ColumnUserID);
         public ref short ColumnIndex => ref Unsafe.AsRef<short>(&NativePtr->ColumnIndex);
         public ref short SortOrder => ref Unsafe.AsRef<short>(&NativePtr->SortOrder);
