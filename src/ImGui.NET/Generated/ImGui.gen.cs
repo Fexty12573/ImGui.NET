@@ -16383,9 +16383,9 @@ namespace ImGuiNET
             ImGuiIO* ret = ImGuiNative.igGetIO();
             return new ImGuiIOPtr(ret);
         }
-        public static nint GetItemFlags()
+        public static ImGuiItemFlags GetItemFlags()
         {
-            nint ret = ImGuiNative.igGetItemFlags();
+            ImGuiItemFlags ret = ImGuiNative.igGetItemFlags();
             return ret;
         }
         public static uint GetItemID()
@@ -24492,24 +24492,24 @@ namespace ImGuiNET
         public static bool ItemAdd(ImRect bb, uint id)
         {
             ImRect* nav_bb = null;
-            nint extra_flags = (ImGuiItemFlags)0;
+            ImGuiItemFlags extra_flags = (ImGuiItemFlags)0;
             byte ret = ImGuiNative.igItemAdd(bb, id, nav_bb, extra_flags);
             return ret != 0;
         }
         public static bool ItemAdd(ImRect bb, uint id, ImRectPtr nav_bb)
         {
             ImRect* native_nav_bb = nav_bb.NativePtr;
-            nint extra_flags = (ImGuiItemFlags)0;
+            ImGuiItemFlags extra_flags = (ImGuiItemFlags)0;
             byte ret = ImGuiNative.igItemAdd(bb, id, native_nav_bb, extra_flags);
             return ret != 0;
         }
-        public static bool ItemAdd(ImRect bb, uint id, ImRectPtr nav_bb, nint extra_flags)
+        public static bool ItemAdd(ImRect bb, uint id, ImRectPtr nav_bb, ImGuiItemFlags extra_flags)
         {
             ImRect* native_nav_bb = nav_bb.NativePtr;
             byte ret = ImGuiNative.igItemAdd(bb, id, native_nav_bb, extra_flags);
             return ret != 0;
         }
-        public static bool ItemHoverable(ImRect bb, uint id, nint item_flags)
+        public static bool ItemHoverable(ImRect bb, uint id, ImGuiItemFlags item_flags)
         {
             byte ret = ImGuiNative.igItemHoverable(bb, id, item_flags);
             return ret != 0;
@@ -28402,7 +28402,7 @@ namespace ImGuiNET
         {
             ImGuiNative.igPushID_Int(int_id);
         }
-        public static void PushItemFlag(nint option, bool enabled)
+        public static void PushItemFlag(ImGuiItemFlags option, bool enabled)
         {
             byte native_enabled = enabled ? (byte)1 : (byte)0;
             ImGuiNative.igPushItemFlag(option, native_enabled);
@@ -30406,7 +30406,7 @@ namespace ImGuiNET
         {
             ImGuiNative.igSetKeyOwnersForKeyChord(key, owner_id, flags);
         }
-        public static void SetLastItemData(uint item_id, nint in_flags, ImGuiItemStatusFlags status_flags, ImRect item_rect)
+        public static void SetLastItemData(uint item_id, ImGuiItemFlags in_flags, ImGuiItemStatusFlags status_flags, ImRect item_rect)
         {
             ImGuiNative.igSetLastItemData(item_id, in_flags, status_flags, item_rect);
         }

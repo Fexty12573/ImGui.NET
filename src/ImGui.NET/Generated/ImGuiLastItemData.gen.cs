@@ -8,7 +8,7 @@ namespace ImGuiNET
     public unsafe partial struct ImGuiLastItemData
     {
         public uint ID;
-        public nint InFlags;
+        public ImGuiItemFlags InFlags;
         public ImGuiItemStatusFlags StatusFlags;
         public ImRect Rect;
         public ImRect NavRect;
@@ -25,7 +25,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiLastItemDataPtr(IntPtr nativePtr) => new ImGuiLastItemDataPtr(nativePtr);
         public static implicit operator IntPtr(ImGuiLastItemDataPtr self) => (IntPtr)self.NativePtr;
         public ref uint ID => ref Unsafe.AsRef<uint>(&NativePtr->ID);
-        public ref nint InFlags => ref Unsafe.AsRef<nint>(&NativePtr->InFlags);
+        public ref ImGuiItemFlags InFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&NativePtr->InFlags);
         public ref ImGuiItemStatusFlags StatusFlags => ref Unsafe.AsRef<ImGuiItemStatusFlags>(&NativePtr->StatusFlags);
         public ref ImRect Rect => ref Unsafe.AsRef<ImRect>(&NativePtr->Rect);
         public ref ImRect NavRect => ref Unsafe.AsRef<ImRect>(&NativePtr->NavRect);

@@ -8,7 +8,7 @@ namespace ImGuiNET
     public unsafe partial struct ImGuiNextItemData
     {
         public ImGuiNextItemDataFlags Flags;
-        public nint ItemFlags;
+        public ImGuiItemFlags ItemFlags;
         public long SelectionUserData;
         public float Width;
         public byte OpenVal;
@@ -24,7 +24,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiNextItemDataPtr(IntPtr nativePtr) => new ImGuiNextItemDataPtr(nativePtr);
         public static implicit operator IntPtr(ImGuiNextItemDataPtr self) => (IntPtr)self.NativePtr;
         public ref ImGuiNextItemDataFlags Flags => ref Unsafe.AsRef<ImGuiNextItemDataFlags>(&NativePtr->Flags);
-        public ref nint ItemFlags => ref Unsafe.AsRef<nint>(&NativePtr->ItemFlags);
+        public ref ImGuiItemFlags ItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&NativePtr->ItemFlags);
         public ref long SelectionUserData => ref Unsafe.AsRef<long>(&NativePtr->SelectionUserData);
         public ref float Width => ref Unsafe.AsRef<float>(&NativePtr->Width);
         public ref bool OpenVal => ref Unsafe.AsRef<bool>(&NativePtr->OpenVal);

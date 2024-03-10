@@ -22,7 +22,6 @@ namespace CodeGenerator
             { "ImBitArray", "uint" },
             { "ImPoolIdx", "nint" },
             { "ImBitArrayPtr", "UIntPtr" },
-            { "ImGuiItemFlags", "nint" },
             { "ImU32", "uint" },
             { "ImS32", "int" },
             { "ImU64", "ulong" },

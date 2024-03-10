@@ -11,7 +11,7 @@ namespace ImGuiNET
         public uint ID;
         public uint FocusScopeId;
         public ImRect RectRel;
-        public nint InFlags;
+        public ImGuiItemFlags InFlags;
         public long SelectionUserData;
         public float DistBox;
         public float DistCenter;
@@ -30,7 +30,7 @@ namespace ImGuiNET
         public ref uint ID => ref Unsafe.AsRef<uint>(&NativePtr->ID);
         public ref uint FocusScopeId => ref Unsafe.AsRef<uint>(&NativePtr->FocusScopeId);
         public ref ImRect RectRel => ref Unsafe.AsRef<ImRect>(&NativePtr->RectRel);
-        public ref nint InFlags => ref Unsafe.AsRef<nint>(&NativePtr->InFlags);
+        public ref ImGuiItemFlags InFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&NativePtr->InFlags);
         public ref long SelectionUserData => ref Unsafe.AsRef<long>(&NativePtr->SelectionUserData);
         public ref float DistBox => ref Unsafe.AsRef<float>(&NativePtr->DistBox);
         public ref float DistCenter => ref Unsafe.AsRef<float>(&NativePtr->DistCenter);

@@ -899,6 +899,11 @@ namespace CodeGenerator
                     wrappedType = null;
                     return false;
                 }
+                else if (nonPtrType == "ImGuiItemFlags")
+                {
+                    wrappedType = nonPtrType;
+                    return true;
+                }
 
                 wrappedType = nonPtrType + "Ptr";
 

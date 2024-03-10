@@ -241,7 +241,7 @@ namespace ImGuiNET
         public byte ActiveIdUsingAllKeyboardKeys;
         public ImGuiKey DebugBreakInShortcutRouting;
         public uint CurrentFocusScopeId;
-        public nint CurrentItemFlags;
+        public ImGuiItemFlags CurrentItemFlags;
         public uint DebugLocateId;
         public ImGuiNextItemData NextItemData;
         public ImGuiLastItemData LastItemData;
@@ -542,7 +542,7 @@ namespace ImGuiNET
         public ref bool ActiveIdUsingAllKeyboardKeys => ref Unsafe.AsRef<bool>(&NativePtr->ActiveIdUsingAllKeyboardKeys);
         public ref ImGuiKey DebugBreakInShortcutRouting => ref Unsafe.AsRef<ImGuiKey>(&NativePtr->DebugBreakInShortcutRouting);
         public ref uint CurrentFocusScopeId => ref Unsafe.AsRef<uint>(&NativePtr->CurrentFocusScopeId);
-        public ref nint CurrentItemFlags => ref Unsafe.AsRef<nint>(&NativePtr->CurrentItemFlags);
+        public ref ImGuiItemFlags CurrentItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&NativePtr->CurrentItemFlags);
         public ref uint DebugLocateId => ref Unsafe.AsRef<uint>(&NativePtr->DebugLocateId);
         public ref ImGuiNextItemData NextItemData => ref Unsafe.AsRef<ImGuiNextItemData>(&NativePtr->NextItemData);
         public ref ImGuiLastItemData LastItemData => ref Unsafe.AsRef<ImGuiLastItemData>(&NativePtr->LastItemData);
@@ -553,7 +553,7 @@ namespace ImGuiNET
         public ImPtrVector<ImGuiStyleModPtr> StyleVarStack => new ImPtrVector<ImGuiStyleModPtr>(NativePtr->StyleVarStack, Unsafe.SizeOf<ImGuiStyleMod>());
         public ImVector<ImFontPtr> FontStack => new ImVector<ImFontPtr>(NativePtr->FontStack);
         public ImPtrVector<ImGuiFocusScopeDataPtr> FocusScopeStack => new ImPtrVector<ImGuiFocusScopeDataPtr>(NativePtr->FocusScopeStack, Unsafe.SizeOf<ImGuiFocusScopeData>());
-        public ImVector<nint> ItemFlagsStack => new ImVector<nint>(NativePtr->ItemFlagsStack);
+        public ImPtrVector<ImGuiItemFlags> ItemFlagsStack => new ImPtrVector<ImGuiItemFlags>(NativePtr->ItemFlagsStack, Unsafe.SizeOf<ImGuiItemFlags>());
         public ImPtrVector<ImGuiGroupDataPtr> GroupStack => new ImPtrVector<ImGuiGroupDataPtr>(NativePtr->GroupStack, Unsafe.SizeOf<ImGuiGroupData>());
         public ImPtrVector<ImGuiPopupDataPtr> OpenPopupStack => new ImPtrVector<ImGuiPopupDataPtr>(NativePtr->OpenPopupStack, Unsafe.SizeOf<ImGuiPopupData>());
         public ImPtrVector<ImGuiPopupDataPtr> BeginPopupStack => new ImPtrVector<ImGuiPopupDataPtr>(NativePtr->BeginPopupStack, Unsafe.SizeOf<ImGuiPopupData>());
