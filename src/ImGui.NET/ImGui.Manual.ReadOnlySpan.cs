@@ -382,9 +382,6 @@ namespace ImGuiNET
         public static Vector2 CalcTextSize(ReadOnlySpan<char> text, int start, int length, bool hideTextAfterDoubleHash, float wrapWidth)
             => CalcTextSizeImpl(text, start, length, hideTextAfterDoubleHash, wrapWidth);
 
-        public static Vector2 CalcTextSize(ReadOnlySpan<char> text, bool hideTextAfterDoubleHash, float wrapWidth)
-            => CalcTextSizeImpl(text, 0, null, hideTextAfterDoubleHash, wrapWidth);
-
         private static Vector2 CalcTextSizeImpl(
             ReadOnlySpan<char> text,
             int start = 0,

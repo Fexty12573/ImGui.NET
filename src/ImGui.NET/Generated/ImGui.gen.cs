@@ -3974,6 +3974,190 @@ namespace ImGuiNET
             ImDrawFlags ret = ImGuiNative.igCalcRoundingFlagsForRectInRect(r_in, r_outer, threshold);
             return ret;
         }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static Vector2 CalcTextSize(ReadOnlySpan<char> text)
+        {
+            Vector2 __retval;
+            byte* native_text;
+            int text_byteCount = 0;
+            if (text != null)
+            {
+                text_byteCount = Encoding.UTF8.GetByteCount(text);
+                if (text_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_text = Util.Allocate(text_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_text_stackBytes = stackalloc byte[text_byteCount + 1];
+                    native_text = native_text_stackBytes;
+                }
+                int native_text_offset = Util.GetUtf8(text, native_text, text_byteCount);
+                native_text[native_text_offset] = 0;
+            }
+            else { native_text = null; }
+            byte hide_text_after_double_hash = 0;
+            float wrap_width = -1.0f;
+            ImGuiNative.igCalcTextSize(&__retval, native_text, native_text+text_byteCount, hide_text_after_double_hash, wrap_width);
+            if (text_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_text);
+            }
+            return __retval;
+        }
+#endif
+        public static Vector2 CalcTextSize(string text)
+        {
+            Vector2 __retval;
+            byte* native_text;
+            int text_byteCount = 0;
+            if (text != null)
+            {
+                text_byteCount = Encoding.UTF8.GetByteCount(text);
+                if (text_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_text = Util.Allocate(text_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_text_stackBytes = stackalloc byte[text_byteCount + 1];
+                    native_text = native_text_stackBytes;
+                }
+                int native_text_offset = Util.GetUtf8(text, native_text, text_byteCount);
+                native_text[native_text_offset] = 0;
+            }
+            else { native_text = null; }
+            byte hide_text_after_double_hash = 0;
+            float wrap_width = -1.0f;
+            ImGuiNative.igCalcTextSize(&__retval, native_text, native_text+text_byteCount, hide_text_after_double_hash, wrap_width);
+            if (text_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_text);
+            }
+            return __retval;
+        }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static Vector2 CalcTextSize(ReadOnlySpan<char> text, bool hide_text_after_double_hash)
+        {
+            Vector2 __retval;
+            byte* native_text;
+            int text_byteCount = 0;
+            if (text != null)
+            {
+                text_byteCount = Encoding.UTF8.GetByteCount(text);
+                if (text_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_text = Util.Allocate(text_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_text_stackBytes = stackalloc byte[text_byteCount + 1];
+                    native_text = native_text_stackBytes;
+                }
+                int native_text_offset = Util.GetUtf8(text, native_text, text_byteCount);
+                native_text[native_text_offset] = 0;
+            }
+            else { native_text = null; }
+            byte native_hide_text_after_double_hash = hide_text_after_double_hash ? (byte)1 : (byte)0;
+            float wrap_width = -1.0f;
+            ImGuiNative.igCalcTextSize(&__retval, native_text, native_text+text_byteCount, native_hide_text_after_double_hash, wrap_width);
+            if (text_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_text);
+            }
+            return __retval;
+        }
+#endif
+        public static Vector2 CalcTextSize(string text, bool hide_text_after_double_hash)
+        {
+            Vector2 __retval;
+            byte* native_text;
+            int text_byteCount = 0;
+            if (text != null)
+            {
+                text_byteCount = Encoding.UTF8.GetByteCount(text);
+                if (text_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_text = Util.Allocate(text_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_text_stackBytes = stackalloc byte[text_byteCount + 1];
+                    native_text = native_text_stackBytes;
+                }
+                int native_text_offset = Util.GetUtf8(text, native_text, text_byteCount);
+                native_text[native_text_offset] = 0;
+            }
+            else { native_text = null; }
+            byte native_hide_text_after_double_hash = hide_text_after_double_hash ? (byte)1 : (byte)0;
+            float wrap_width = -1.0f;
+            ImGuiNative.igCalcTextSize(&__retval, native_text, native_text+text_byteCount, native_hide_text_after_double_hash, wrap_width);
+            if (text_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_text);
+            }
+            return __retval;
+        }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static Vector2 CalcTextSize(ReadOnlySpan<char> text, bool hide_text_after_double_hash, float wrap_width)
+        {
+            Vector2 __retval;
+            byte* native_text;
+            int text_byteCount = 0;
+            if (text != null)
+            {
+                text_byteCount = Encoding.UTF8.GetByteCount(text);
+                if (text_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_text = Util.Allocate(text_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_text_stackBytes = stackalloc byte[text_byteCount + 1];
+                    native_text = native_text_stackBytes;
+                }
+                int native_text_offset = Util.GetUtf8(text, native_text, text_byteCount);
+                native_text[native_text_offset] = 0;
+            }
+            else { native_text = null; }
+            byte native_hide_text_after_double_hash = hide_text_after_double_hash ? (byte)1 : (byte)0;
+            ImGuiNative.igCalcTextSize(&__retval, native_text, native_text+text_byteCount, native_hide_text_after_double_hash, wrap_width);
+            if (text_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_text);
+            }
+            return __retval;
+        }
+#endif
+        public static Vector2 CalcTextSize(string text, bool hide_text_after_double_hash, float wrap_width)
+        {
+            Vector2 __retval;
+            byte* native_text;
+            int text_byteCount = 0;
+            if (text != null)
+            {
+                text_byteCount = Encoding.UTF8.GetByteCount(text);
+                if (text_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_text = Util.Allocate(text_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_text_stackBytes = stackalloc byte[text_byteCount + 1];
+                    native_text = native_text_stackBytes;
+                }
+                int native_text_offset = Util.GetUtf8(text, native_text, text_byteCount);
+                native_text[native_text_offset] = 0;
+            }
+            else { native_text = null; }
+            byte native_hide_text_after_double_hash = hide_text_after_double_hash ? (byte)1 : (byte)0;
+            ImGuiNative.igCalcTextSize(&__retval, native_text, native_text+text_byteCount, native_hide_text_after_double_hash, wrap_width);
+            if (text_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_text);
+            }
+            return __retval;
+        }
         public static int CalcTypematicRepeatAmount(float t0, float t1, float repeat_delay, float repeat_rate)
         {
             int ret = ImGuiNative.igCalcTypematicRepeatAmount(t0, t1, repeat_delay, repeat_rate);
@@ -24303,6 +24487,26 @@ namespace ImGuiNET
             ImGuiWindow* native_window = window.NativePtr;
             ImGuiWindow* native_potential_parent = potential_parent.NativePtr;
             byte ret = ImGuiNative.igIsWindowWithinBeginStackOf(native_window, native_potential_parent);
+            return ret != 0;
+        }
+        public static bool ItemAdd(ImRect bb, uint id)
+        {
+            ImRect* nav_bb = null;
+            nint extra_flags = (ImGuiItemFlags)0;
+            byte ret = ImGuiNative.igItemAdd(bb, id, nav_bb, extra_flags);
+            return ret != 0;
+        }
+        public static bool ItemAdd(ImRect bb, uint id, ImRectPtr nav_bb)
+        {
+            ImRect* native_nav_bb = nav_bb.NativePtr;
+            nint extra_flags = (ImGuiItemFlags)0;
+            byte ret = ImGuiNative.igItemAdd(bb, id, native_nav_bb, extra_flags);
+            return ret != 0;
+        }
+        public static bool ItemAdd(ImRect bb, uint id, ImRectPtr nav_bb, nint extra_flags)
+        {
+            ImRect* native_nav_bb = nav_bb.NativePtr;
+            byte ret = ImGuiNative.igItemAdd(bb, id, native_nav_bb, extra_flags);
             return ret != 0;
         }
         public static bool ItemHoverable(ImRect bb, uint id, nint item_flags)
